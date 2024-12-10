@@ -3,6 +3,7 @@ import styles from "./manageExpense.module.css";
 import { WalletContext } from "../../App";
 
 const ManageExpense = ({ visible, close, txn, setEditTxn }) => {
+  console.log("txnnnnn: ",txn)
   const {
     addBalance,
     addTransaction,
@@ -11,12 +12,10 @@ const ManageExpense = ({ visible, close, txn, setEditTxn }) => {
     wallet,
     editTransaction,
   } = useContext(WalletContext);
-  const [name, setName] = useState(txn ? txn.name : "");
-  const [price, setPrice] = useState(txn ? txn.price : 0);
-  const [category, setCategory] = useState(
-    txn ? txn.category : "entertainment"
-  );
-  const [date, setDate] = useState(txn ? txn.date : new Date());
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState(0);
+  const [category, setCategory] = useState("entertainment");
+  const [date, setDate] = useState(new Date());
 
   const handleAddExpense = () => {
     if (txn) {
@@ -40,7 +39,7 @@ const ManageExpense = ({ visible, close, txn, setEditTxn }) => {
     } else {
       if (name && price && category && date) {
         const transaction = {
-          id: transactions.length,
+          id: transactions.length, //uuid
           name,
           price,
           category,
@@ -72,21 +71,26 @@ const ManageExpense = ({ visible, close, txn, setEditTxn }) => {
           borderRadius: 15,
         }}
       >
-        <h2 style={{ fontFamily: "Ubuntu" }}>{txn ? "Edit Expense" : "Add Expense"}</h2>
+        <h2 style={{ fontFamily: "Ubuntu" }}>
+          {txn ? "Edit Expense" : "Add Expense"}
+        </h2>
         <div className={styles.inputs}>
           <input
+            value={txn ? txn.name : name}
             onChange={(e) => setName(e.target.value)}
-            placeHolder="Title"
+            placeholder="Title"
             className={styles.input}
             type="text"
           />
           <input
+            value={txn ? txn.price :price}
             onChange={(e) => setPrice(e.target.value)}
-            placeHolder="Price"
+            placeholder="Price"
             className={styles.input}
             type="number"
           />
           <select
+            value={txn ? txn.category : category}
             onChange={(e) => setCategory(e.target.value)}
             name="top"
             id="top"
@@ -97,8 +101,9 @@ const ManageExpense = ({ visible, close, txn, setEditTxn }) => {
             <option value="travel">Travel</option>
           </select>
           <input
+            value={txn ? txn.date : date}
             onChange={(e) => setDate(e.target.value)}
-            placeHolder="dd/mm/yyyy"
+            placeholder="dd/mm/yyyy"
             className={styles.input}
             type="date"
           />

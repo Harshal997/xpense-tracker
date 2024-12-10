@@ -9,8 +9,7 @@ import { WalletContext } from "../../../App";
 import ManageExpense from "../../manage-expense/ManageExpense";
 
 export const Transaction = ({ transaction }) => {
-  const { deleteTransaction, addBalance } =
-    useContext(WalletContext);
+  const { deleteTransaction, addBalance } = useContext(WalletContext);
   const [editxn, setEditTxn] = useState();
   const [visible, setVisible] = useState(false);
   const deleteExpense = (id, price) => {
@@ -23,6 +22,12 @@ export const Transaction = ({ transaction }) => {
   };
   return (
     <>
+      <ManageExpense
+        visible={visible}
+        close={setVisible}
+        txn={editxn}
+        setEditTxn={setEditTxn}
+      />
       <div
         style={{
           backgroundColor: "#ffffff",
@@ -73,7 +78,6 @@ export const Transaction = ({ transaction }) => {
         </div>
         <div className={styles.line}></div>
       </div>
-      <ManageExpense visible={visible} close={setVisible} txn={editxn} setEditTxn={setEditTxn}/>
     </>
   );
 };
