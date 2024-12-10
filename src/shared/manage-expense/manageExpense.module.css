@@ -1,0 +1,18 @@
+.expense {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.77);
+  z-index: 3;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1em 2em;
+}
+
+.inputs {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+  width: 30em;
+}

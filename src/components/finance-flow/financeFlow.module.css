@@ -1,0 +1,5 @@
+.fundsContainer {
+    display: flex;
+    background-color: #626262;
+    justify-content: center;
+}

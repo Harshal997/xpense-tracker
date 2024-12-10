@@ -1,0 +1,43 @@
+.transaction {
+    display: flex;
+    width: 30em;
+    justify-content: space-between;
+    font-family: 'Ubuntu';
+    padding: 0.1em 1em;
+}
+.transactionInfoRow {
+    display: flex;
+    align-items: center;
+    column-gap: 1em;
+}
+
+.transactionInfoName {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.transactionInfoButton {
+    border: none;
+    background-color:  rgb(235, 201, 5);
+    padding: 0.4em 0.4em;
+    display: flex;
+    border-radius: 13px;
+    color: #ffffff;
+    transition: opacity 0.2s;
+}
+
+.line {
+    width: 100%;
+    display: flex;
+    align-self: center;
+    width: 90%;
+    height: 1px;
+    margin: 0.8em 0;
+    background-color: #9B9B9B;
+}
+
+.transactionInfoButton:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
