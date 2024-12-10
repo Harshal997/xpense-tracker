@@ -5,7 +5,7 @@ import { Finance } from "../../shared/finance/Finance";
 export const FinanceFlow = () => {
   return (
     <div className={styles.fundsContainer}>
-      <Finance />
+      <Finance income={true} />
       <Finance />
     </div>
   );
