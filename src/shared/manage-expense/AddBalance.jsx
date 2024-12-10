@@ -3,7 +3,7 @@ import styles from "./manageExpense.module.css"
 import { WalletContext } from "../../App";
 
 const AddBalance = ({ visible, close }) => {
-    const { wallet, addBalance, subtractBalance } = useContext(WalletContext);
+    const { addBalance } = useContext(WalletContext);
     const [amount, setAmount] = useState(0);
     const handleAdd = () => {
         addBalance(amount);

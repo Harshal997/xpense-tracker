@@ -21,7 +21,8 @@ function App() {
   }, [wallet]);
 
   useEffect(() => {
-    transactions && transactions.length && localStorage.setItem("transactions", JSON.stringify(transactions));
+    console.log(transactions)
+    localStorage.setItem("transactions", JSON.stringify(transactions));
   }, [transactions]);
 
   const addBalance = (amount) => {
@@ -33,7 +34,6 @@ function App() {
   };
 
   const addTransaction = (transaction) => {
-    console.log("tra", transaction)
     setTransactions((prev) => [...prev, transaction]);
   }
 
@@ -42,11 +42,19 @@ function App() {
     setTransactions((prev) => prev.filter((tra) => tra.id !== transactionId));
   }  
 
+  const editTransaction = (updatedTransaction) => {
+    console.log("editid",updatedTransaction.id)
+      setTransactions((prevTransactions) =>
+        prevTransactions.map((transaction) =>
+          transaction.id === updatedTransaction.id ? updatedTransaction : transaction
+        )
+      );
+  }  
+
   return (
-    <WalletContext.Provider value={{ wallet, addBalance, subtractBalance, transactions, addTransaction, deleteTransaction }}>
+    <WalletContext.Provider value={{ wallet, addBalance, subtractBalance, transactions, addTransaction, deleteTransaction, editTransaction }}>
       <FinanceFlow />
       <Transactions />
-      {/* <ExpenseCharts /> */}
     </WalletContext.Provider>
   );
 }
