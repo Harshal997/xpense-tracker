@@ -12,10 +12,10 @@ const AddBalance = ({ visible, close }) => {
     return (
         <div className={styles.expense} style={{ display: visible ? 'flex' : 'none' }}>
             <div style={{ backgroundColor: "#EFEFEF", padding: "1em 2em", display: 'flex', flexDirection: 'column', rowGap: '1em', borderRadius: 15 }}>
-                <h2 style={{ fontFamily: "Ubuntu" }}>Add Expense</h2>
+                <h2 style={{ fontFamily: "Ubuntu" }}>Add Balance</h2>
                 <div className={styles.inputs}>
                     <input onChange={(e) => setAmount(e.target.value)} placeHolder="Income Amount" className={styles.input} type="number" />
-                    <button onClick={handleAdd} className={styles.expButton} style={{ padding: "0 1em" }}>Add Expense</button>
+                    <button onClick={handleAdd} className={styles.expButton} style={{ padding: "0 1em" }}>Add Balance</button>
                     <button onClick={() => close(false)} className={styles.cancelButton}>Cancel</button>
                 </div>
             </div>

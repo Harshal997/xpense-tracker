@@ -3,7 +3,6 @@ import styles from "./manageExpense.module.css";
 import { WalletContext } from "../../App";
 
 const ManageExpense = ({ visible, close, txn, setEditTxn }) => {
-  console.log("txn",txn)
   const {
     addBalance,
     addTransaction,
@@ -73,7 +72,7 @@ const ManageExpense = ({ visible, close, txn, setEditTxn }) => {
           borderRadius: 15,
         }}
       >
-        <h2 style={{ fontFamily: "Ubuntu" }}>Add Expense</h2>
+        <h2 style={{ fontFamily: "Ubuntu" }}>{txn ? "Edit Expense" : "Add Expense"}</h2>
         <div className={styles.inputs}>
           <input
             onChange={(e) => setName(e.target.value)}
