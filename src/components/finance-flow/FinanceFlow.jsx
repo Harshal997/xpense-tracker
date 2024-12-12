@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './financeFlow.module.css'
 import { Finance } from "../../shared/finance/Finance";
-import PieChart from "../Chart";
+import {PieChart} from "../Chart";
 
 export const FinanceFlow = () => {
   return (
