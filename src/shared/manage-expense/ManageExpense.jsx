@@ -12,10 +12,10 @@ const ManageExpense = ({ visible, close, txn, setEditTxn }) => {
     wallet,
     editTransaction,
   } = useContext(WalletContext);
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
-  const [category, setCategory] = useState("entertainment");
-  const [date, setDate] = useState(new Date());
+  const [name, setName] = useState(() => {return txn ? txn.name : ""});
+  const [price, setPrice] = useState(() => {return txn ? txn.price : 0});
+  const [category, setCategory] = useState(() => {return txn ? txn.category : "entertainment"});
+  const [date, setDate] = useState(() => {return txn ? txn.date : new Date()});
 
   const handleAddExpense = () => {
     if (txn) {
@@ -27,9 +27,9 @@ const ManageExpense = ({ visible, close, txn, setEditTxn }) => {
           category,
           date,
         };
-        if (wallet >= txn.price - price) {
+        if (wallet >= price - txn.price) {
           editTransaction(transaction);
-          addBalance(txn.price - price);
+          addBalance(price - txn.price);
         } else {
           alert("Insufficient wallet balance!");
         }
@@ -39,7 +39,7 @@ const ManageExpense = ({ visible, close, txn, setEditTxn }) => {
     } else {
       if (name && price && category && date) {
         const transaction = {
-          id: transactions.length, //uuid
+          id: Date.now(), //uuid
           name,
           price,
           category,
@@ -76,21 +76,21 @@ const ManageExpense = ({ visible, close, txn, setEditTxn }) => {
         </h2>
         <div className={styles.inputs}>
           <input
-            value={txn ? txn.name : name}
+            value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Title"
             className={styles.input}
             type="text"
           />
           <input
-            value={txn ? txn.price :price}
+            value={price}
             onChange={(e) => setPrice(e.target.value)}
             placeholder="Price"
             className={styles.input}
             type="number"
           />
           <select
-            value={txn ? txn.category : category}
+            value={category}
             onChange={(e) => setCategory(e.target.value)}
             name="top"
             id="top"
@@ -101,7 +101,7 @@ const ManageExpense = ({ visible, close, txn, setEditTxn }) => {
             <option value="travel">Travel</option>
           </select>
           <input
-            value={txn ? txn.date : date}
+            value={date}
             onChange={(e) => setDate(e.target.value)}
             placeholder="dd/mm/yyyy"
             className={styles.input}
